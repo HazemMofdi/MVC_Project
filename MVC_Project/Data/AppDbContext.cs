@@ -132,6 +132,71 @@ namespace MVC_Project.Data
                         Gender = GenderEnum.Male.ToString(),
                         HealthAssessmentResults = HealthAssessmentResultEnum.MildDepression.ToString(),
                         Preferences = "Prefers Chat"
+                    },
+                    new User
+                    {
+                        Id = 4,
+                        FName = "Yara",
+                        LName = "Hassan",
+                        Email = "Yara.Hassan@example.com",
+                        Password = "SecurePass123",
+                        PhoneNumber = "01055556789",
+                        DateOfBirth = new DateTime(1995, 8, 22),
+                        Gender = GenderEnum.Female.ToString(),
+                        HealthAssessmentResults = HealthAssessmentResultEnum.Anxiety.ToString(),
+                        Preferences = "Prefers video calls"
+                    },
+                    new User
+                    {
+                        Id = 5,
+                        FName = "Omar",
+                        LName = "Ibrahim",
+                        Email = "Omar.Ibrahim@example.com",
+                        Password = "OmarPass2023",
+                        PhoneNumber = "01066667890",
+                        DateOfBirth = new DateTime(1998, 11, 5),
+                        Gender = GenderEnum.Male.ToString(),
+                        HealthAssessmentResults = HealthAssessmentResultEnum.PanicDisorder.ToString(),
+                        Preferences = "Prefers text therapy"
+                    },
+                    new User
+                    {
+                        Id = 6,
+                        FName = "Lina",
+                        LName = "Mahmoud",
+                        Email = "Lina.Mahmoud@example.com",
+                        Password = "Lina123!",
+                        PhoneNumber = "01077778901",
+                        DateOfBirth = new DateTime(1992, 4, 30),
+                        Gender = GenderEnum.Female.ToString(),
+                        HealthAssessmentResults = HealthAssessmentResultEnum.PTSD.ToString(),
+                        Preferences = "Prefers evening sessions"
+                    },
+                    new User
+                    {
+                        Id = 7,
+                        FName = "Karim",
+                        LName = "Adel",
+                        Email = "Karim.Adel@example.com",
+                        Password = "Karim@789",
+                        PhoneNumber = "01088889012",
+                        DateOfBirth = new DateTime(1997, 7, 14),
+                        Gender = GenderEnum.Male.ToString(),
+                        HealthAssessmentResults = HealthAssessmentResultEnum.OCD.ToString(),
+                        Preferences = "Prefers weekly sessions"
+                    },
+                    new User
+                    {
+                        Id = 8,
+                        FName = "Nour",
+                        LName = "Samir",
+                        Email = "Nour.Samir@example.com",
+                        Password = "NourPass!",
+                        PhoneNumber = "01099990123",
+                        DateOfBirth = new DateTime(2001, 1, 18),
+                        Gender = GenderEnum.Female.ToString(),
+                        HealthAssessmentResults = HealthAssessmentResultEnum.MildDepression.ToString(),
+                        Preferences = "Prefers female therapists"
                     }
                 );
 
@@ -195,11 +260,66 @@ namespace MVC_Project.Data
                         Id = 5,
                         UserID = 2, // (Mohamed)
                         TherapistID = 5, //(Hamss)
-                        SessionDate = new DateTime(2025, 4, 4),
+                        SessionDate = new DateTime(2025, 4, 30),
                         SessionTime = new TimeSpan(13, 0, 0), // 1:00 PM
                         SessionType = SessionTypeEnum.Chat.ToString(),
                         SessionStatus = SessionStatusEnum.Booked.ToString(),
                         SessionNotes = "Session on OCD management."
+                    },
+                    new Session
+                    {
+                        Id = 6,
+                        UserID = 4, // Yara
+                        TherapistID = 1, // Hazem
+                        SessionDate = new DateTime(2025, 4, 28),
+                        SessionTime = new TimeSpan(9, 0, 0), // 9:00 AM
+                        SessionType = SessionTypeEnum.VideoCall.ToString(),
+                        SessionStatus = SessionStatusEnum.Booked.ToString(),
+                        SessionNotes = "Initial consultation for anxiety."
+                    },
+                    new Session
+                    {
+                        Id = 7,
+                        UserID = 5, // Omar
+                        TherapistID = 1, // Hazem
+                        SessionDate = new DateTime(2025, 7, 4),
+                        SessionTime = new TimeSpan(11, 0, 0), // 11:00 AM
+                        SessionType = SessionTypeEnum.Chat.ToString(),
+                        SessionStatus = SessionStatusEnum.Booked.ToString(),
+                        SessionNotes = "Session for panic disorder support."
+                    },
+                    new Session
+                    {
+                        Id = 8,
+                        UserID = 6, // Lina
+                        TherapistID = 2, // Hassan
+                        SessionDate = new DateTime(2025, 5, 2),
+                        SessionTime = new TimeSpan(12, 0, 0), // 12:00 PM
+                        SessionType = SessionTypeEnum.VideoCall.ToString(),
+                        SessionStatus = SessionStatusEnum.Booked.ToString(),
+                        SessionNotes = "Evening-preference client, PTSD therapy."
+                    },
+                    new Session
+                    {
+                        Id = 9,
+                        UserID = 7, // Karim
+                        TherapistID = 4, // Nancy
+                        SessionDate = new DateTime(2025, 5, 4),
+                        SessionTime = new TimeSpan(14, 0, 0), // 2:00 PM
+                        SessionType = SessionTypeEnum.VideoCall.ToString(),
+                        SessionStatus = SessionStatusEnum.Booked.ToString(),
+                        SessionNotes = "OCD-focused discussion and planning."
+                    },
+                    new Session
+                    {
+                        Id = 10,
+                        UserID = 8, // Nour
+                        TherapistID = 5, // Hamss
+                        SessionDate = new DateTime(2025, 5, 3),
+                        SessionTime = new TimeSpan(15, 0, 0), // 3:00 PM
+                        SessionType = SessionTypeEnum.VideoCall.ToString(),
+                        SessionStatus = SessionStatusEnum.Booked.ToString(),
+                        SessionNotes = "Session for mild depression, female therapist requested."
                     }
                 );
 
@@ -258,6 +378,51 @@ namespace MVC_Project.Data
                         MoodRating = MoodRatingEnum.Good.ToString(),
                         Goals = "Work on OCD management",
                         ProgressNotes = "Making steady progress."
+                    },
+                    new ProgressTracking
+                    {
+                        Id = 6,
+                        UserID = 4, // Yara
+                        Date = new DateTime(2025, 4, 30),
+                        MoodRating = MoodRatingEnum.AboveAverage.ToString(),
+                        Goals = "Develop coping strategies for anxiety",
+                        ProgressNotes = "Reported reduced anxiety in social situations."
+                    },
+                    new ProgressTracking
+                    {
+                        Id = 7,
+                        UserID = 5, // Omar
+                        Date = new DateTime(2025, 7, 6),
+                        MoodRating = MoodRatingEnum.Good.ToString(),
+                        Goals = "Handle panic triggers more calmly",
+                        ProgressNotes = "Felt more in control during anxious moments."
+                    },
+                    new ProgressTracking
+                    {
+                        Id = 8,
+                        UserID = 6, // Lina
+                        Date = new DateTime(2025, 5, 4), 
+                        MoodRating = MoodRatingEnum.Average.ToString(),
+                        Goals = "Build resilience to trauma-related stress",
+                        ProgressNotes = "Struggled slightly but remains optimistic."
+                    },
+                    new ProgressTracking
+                    {
+                        Id = 9,
+                        UserID = 7, // Karim
+                        Date = new DateTime(2025, 5, 6),
+                        MoodRating = MoodRatingEnum.VeryGood.ToString(),
+                        Goals = "Reduce compulsive behavior",
+                        ProgressNotes = "Reported fewer OCD episodes this week."
+                    },
+                    new ProgressTracking
+                    {
+                        Id = 10,
+                        UserID = 8, // Nour
+                        Date = new DateTime(2025, 5, 5),
+                        MoodRating = MoodRatingEnum.Good.ToString(),
+                        Goals = "Enhance self-esteem and positivity",
+                        ProgressNotes = "Feeling more emotionally balanced."
                     }
                 );
 
@@ -316,6 +481,54 @@ namespace MVC_Project.Data
                         Rating = ReviewRatingEnum.Excellent.ToString(),
                         ReviewText = "Dr. Hamss Mohammed is amazing at OCD management. Highly recommend!",
                         ReviewDate = new DateTime(2025, 7, 7)
+                    },
+                    new Review
+                    {
+                        Id = 6,
+                        UserID = 4,
+                        TherapistID = 1,
+                        Rating = ReviewRatingEnum.Excellent.ToString(),
+                        ReviewText = "Mr. Hazem really helped me understand and manage my anxiety better. He’s a great listener!",
+                        ReviewDate = new DateTime(2025, 5, 1)
+                    },
+                    new Review
+                    {
+                        Id = 7,
+                        UserID = 5, 
+                        TherapistID = 1, 
+                        Rating = ReviewRatingEnum.Excellent.ToString(),
+                        ReviewText = "Very supportive and calm atmosphere. Hazem provided solid strategies for panic disorder.",
+                        ReviewDate = new DateTime(2025, 7, 6)
+                    },
+
+                    new Review
+                    {
+                        Id = 8,
+                        UserID = 6, 
+                        TherapistID = 2, 
+                        Rating = ReviewRatingEnum.Good.ToString(),
+                        ReviewText = "Hassan was empathetic and offered helpful evening sessions. Could improve in follow-up.",
+                        ReviewDate = new DateTime(2025, 5, 4)
+                    },
+
+                    new Review
+                    {
+                        Id = 9,
+                        UserID = 7, 
+                        TherapistID = 4, 
+                        Rating = ReviewRatingEnum.Excellent.ToString(),
+                        ReviewText = "Nancy made me feel heard. Great experience with OCD management strategies!",
+                        ReviewDate = new DateTime(2025, 5, 6)
+                    },
+
+                    new Review
+                    {
+                        Id = 10,
+                        UserID = 8, 
+                        TherapistID = 5,
+                        Rating = ReviewRatingEnum.Excellent.ToString(),
+                        ReviewText = "Felt very comfortable talking to Hamss. Appreciated her compassionate approach.",
+                        ReviewDate = new DateTime(2025, 5, 6)
                     }
                 );
         }

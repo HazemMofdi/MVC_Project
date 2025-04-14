@@ -22,7 +22,7 @@ namespace MVC_Project.Models
     public class User
     {
         // Question mark is used to indicate that the property nullable is true
-        // while the [Required] annotation refers to Entering  the property is required
+        // while the [Required] annotation refers to Entering the property is required
         [Key]
         public int Id { get; set; }
         [Required]
