@@ -1,0 +1,57 @@
+﻿@model List<Session>
+
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>Session ID</th>
+            <th>Session Date</th>
+            <th>Session Time</th>
+            <th>Session Type</th>
+            <th>Session Status</th>
+            <th>Session Notes</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var session in Model)
+        {
+            <tr>
+                <td>@session.Id</td>
+                <td>@session.SessionDate</td>
+                <td>@session.SessionTime</td>
+                <td>@session.SessionType</td>
+                <td>@session.SessionStatus</td>
+                <td>@session.SessionNotes</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<style>
+    table {
+        width: 80%;
+        margin: 20px auto;
+        border-collapse: collapse;
+        font-family: 'Segoe UI', sans-serif;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    th, td {
+        padding: 12px 15px;
+        border: 1px solid #ddd;
+        text-align: center;
+    }
+
+    thead {
+        background-color: #007bff;
+        color: white;
+    }
+
+    tbody tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    tbody tr:hover {
+        background-color: #e0f7fa;
+        cursor: pointer;
+    }
+</style>

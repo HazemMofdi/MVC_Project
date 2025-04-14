@@ -1,0 +1,56 @@
+﻿@model List<ProgressTracking>
+
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>Progress ID</th>
+            <th>Progress Date</th>
+            <th>Progress Notes</th>
+            <th>Progress Goals</th>
+            <th>Mode Progress</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var Progress in Model)
+        {
+            <tr>
+                <td>@Progress.Id</td>
+                <td>@Progress.Date</td>
+                <td>@Progress.ProgressNotes</td>
+                <td>@Progress.Goals</td>
+                <td>@Progress.MoodRating</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<style>
+    table {
+        width: 80%;
+        margin: 20px auto;
+        border-collapse: collapse;
+        font-family: 'Segoe UI', sans-serif;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    th, td {
+        padding: 12px 15px;
+        border: 1px solid #ddd;
+        text-align: center;
+    }
+
+    thead {
+        background-color: #007bff;
+        color: white;
+    }
+
+    tbody tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    tbody tr:hover {
+        background-color: #e0f7fa;
+        cursor: pointer;
+    }
+</style>

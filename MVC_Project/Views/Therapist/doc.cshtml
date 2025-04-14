@@ -1,0 +1,35 @@
+﻿@model List<Therapist>
+<section id="doctors" class="doctors section">
+
+    <!-- Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+        <h2>Therapists</h2>
+        <p>Our Amazing Team</p>
+    </div><!-- End Section Title -->
+
+    <div class="container">
+
+        <div class="row gy-4">
+
+            @foreach (var item in Model)
+            {
+                
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="team-member d-flex align-items-start">
+                        <div class="pic"><img src="~/assets/img/doctors/@item.Img" class="img-fluid" alt=""></div>
+                        <div class="member-info">
+                            <h4>@item.FullName</h4>
+                            <p>@item.Bio</p>
+                        </div>
+                    </div>
+                </div>
+            }
+           
+
+
+
+        </div>
+
+    </div>
+
+</section>

@@ -9,9 +9,17 @@ namespace MVC_Project.Controllers
 {
     public class TherapistController : Controller
     {
+        AppDbContext db = new AppDbContext();
+
         public IActionResult Index()
         {
             return View();
+        }
+
+        public IActionResult doc()
+        {
+            var therapistList = db.Therapists.ToList();
+            return View(therapistList);
         }
     }
 }

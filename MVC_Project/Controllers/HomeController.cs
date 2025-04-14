@@ -1,11 +1,14 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using MVC_Project.Data;
 using MVC_Project.Models;
 
 namespace MVC_Project.Controllers
 {
     public class HomeController : Controller
     {
+        AppDbContext db = new AppDbContext();
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
@@ -13,7 +16,7 @@ namespace MVC_Project.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public IActionResult index()
         {
             return View();
         }

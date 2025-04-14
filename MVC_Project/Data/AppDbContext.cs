@@ -34,8 +34,8 @@ namespace MVC_Project.Data
                     new Therapist
                     {
                         Id = 1,
-                        FName = "Hazem",
-                        LName = "Mofdi",
+                        FullName = "Hazem Mofdi",
+                        Img = "doctors-1.jpg",
                         Email = "HazemMofdi11@gmail.com",
                         Bio = "Experienced therapist with 10+ years of practice. Specializes in anxiety and depression.",
                         Rating = 5,
@@ -45,8 +45,8 @@ namespace MVC_Project.Data
                     new Therapist
                     {
                         Id = 2,
-                        FName = "Hassan",
-                        LName = "Atef",
+                        FullName = "Hassan Atef",
+                        Img = "doctors-1.jpg",
                         Email = "HassanAtef10@gmail.com",
                         Bio = "Specializes in stress management and burnout. Helps clients develop coping strategies.",
                         Rating = 5,
@@ -57,8 +57,8 @@ namespace MVC_Project.Data
                     {
 
                         Id = 3,
-                        FName = "Rahma",
-                        LName = "Tarek",
+                        FullName = "Rahma Tarek",
+                        Img = "doctors-2.jpg",
                         Email = "RahmaTarek111@gmail.com",
                         Bio = "Specializes in trauma-informed therapist who specializes in helping clients heal from PTSD and complex trauma",
                         Rating = 5,
@@ -68,8 +68,8 @@ namespace MVC_Project.Data
                     new Therapist
                     {
                         Id = 4,
-                        FName = "Nancy",
-                        LName = "Saad",
+                        FullName = "Nancy Saad",
+                        Img = "doctors-2.jpg",
                         Email = "NancySaad111@gmail.com",
                         Bio = "Specializes in workplace stress and burnout. She helps clients manage stress, improve work-life balance, and develop resilience through mindfulness and stress-reduction techniques.",
                         Rating = 5,
@@ -79,8 +79,8 @@ namespace MVC_Project.Data
                     new Therapist
                     {
                         Id = 5,
-                        FName = "Hamss",
-                        LName = "Mohammed",
+                        FullName = "Hamss Mohammed",
+                        Img = "doctors-2.jpg",
                         Email = "HamssMohamed111@gmail.com",
                         Bio = "licensed psychologist specializing in the treatment of Obsessive-Compulsive Disorder (OCD), She helps clients reduce compulsions and manage intrusive thoughts. With over 10 years of experience",
                         Rating = 5,

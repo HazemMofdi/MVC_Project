@@ -441,11 +441,11 @@ namespace MVC_Project.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("FName")
+                    b.Property<string>("FullName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("LName")
+                    b.Property<string>("Img")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -463,8 +463,8 @@ namespace MVC_Project.Migrations
                             Availability = "Mon-Fri, 9 AM - 5 PM",
                             Bio = "Experienced therapist with 10+ years of practice. Specializes in anxiety and depression.",
                             Email = "HazemMofdi11@gmail.com",
-                            FName = "Hazem",
-                            LName = "Mofdi",
+                            FullName = "Hazem Mofdi",
+                            Img = "doctors-1.jpg",
                             Rating = 5
                         },
                         new
@@ -473,8 +473,8 @@ namespace MVC_Project.Migrations
                             Availability = "Tue-Thu, 10 AM - 6 PM",
                             Bio = "Specializes in stress management and burnout. Helps clients develop coping strategies.",
                             Email = "HassanAtef10@gmail.com",
-                            FName = "Hassan",
-                            LName = "Atef",
+                            FullName = "Hassan Atef",
+                            Img = "doctors-1.jpg",
                             Rating = 5
                         },
                         new
@@ -483,8 +483,8 @@ namespace MVC_Project.Migrations
                             Availability = "Mon-Wed, 11 AM - 7 PM",
                             Bio = "Specializes in trauma-informed therapist who specializes in helping clients heal from PTSD and complex trauma",
                             Email = "RahmaTarek111@gmail.com",
-                            FName = "Rahma",
-                            LName = "Tarek",
+                            FullName = "Rahma Tarek",
+                            Img = "doctors-2.jpg",
                             Rating = 5
                         },
                         new
@@ -493,8 +493,8 @@ namespace MVC_Project.Migrations
                             Availability = "Wed-Fri, 12 PM - 8 PM",
                             Bio = "Specializes in workplace stress and burnout. She helps clients manage stress, improve work-life balance, and develop resilience through mindfulness and stress-reduction techniques.",
                             Email = "NancySaad111@gmail.com",
-                            FName = "Nancy",
-                            LName = "Saad",
+                            FullName = "Nancy Saad",
+                            Img = "doctors-2.jpg",
                             Rating = 5
                         },
                         new
@@ -503,8 +503,8 @@ namespace MVC_Project.Migrations
                             Availability = "Mon-Thu, 9 AM - 4 PM",
                             Bio = "licensed psychologist specializing in the treatment of Obsessive-Compulsive Disorder (OCD), She helps clients reduce compulsions and manage intrusive thoughts. With over 10 years of experience",
                             Email = "HamssMohamed111@gmail.com",
-                            FName = "Hamss",
-                            LName = "Mohammed",
+                            FullName = "Hamss Mohammed",
+                            Img = "doctors-2.jpg",
                             Rating = 5
                         });
                 });
