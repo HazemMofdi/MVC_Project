@@ -26,9 +26,7 @@ namespace MVC_Project.Models
         [Key]
         public int Id { get; set; }
         [Required]
-        public string FName { get; set; }
-        [Required]
-        public string LName { get; set; }
+        public string Name { get; set; }
         [Required]
         public string Email { get; set; }
         [Required]

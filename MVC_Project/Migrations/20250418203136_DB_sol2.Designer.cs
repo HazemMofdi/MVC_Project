@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MVC_Project.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250414221125_Image")]
-    partial class Image
+    [Migration("20250418203136_DB_sol2")]
+    partial class DB_sol2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -434,7 +434,7 @@ namespace MVC_Project.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Availability")
+                    b.Property<string>("Availablility")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Bio")
@@ -444,11 +444,11 @@ namespace MVC_Project.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("FullName")
+                    b.Property<string>("Img")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Img")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -463,51 +463,51 @@ namespace MVC_Project.Migrations
                         new
                         {
                             Id = 1,
-                            Availability = "Mon-Fri, 9 AM - 5 PM",
+                            Availablility = "Mon-Fri, 9 AM - 5 PM",
                             Bio = "Experienced therapist with 10+ years of practice. Specializes in anxiety and depression.",
                             Email = "HazemMofdi11@gmail.com",
-                            FullName = "Hazem Mofdi",
                             Img = "doctors-1.jpg",
+                            Name = "Hazem Mofdi",
                             Rating = 5
                         },
                         new
                         {
                             Id = 2,
-                            Availability = "Tue-Thu, 10 AM - 6 PM",
+                            Availablility = "Tue-Thu, 10 AM - 6 PM",
                             Bio = "Specializes in stress management and burnout. Helps clients develop coping strategies.",
                             Email = "HassanAtef10@gmail.com",
-                            FullName = "Hassan Atef",
                             Img = "doctors-1.jpg",
+                            Name = "Hassan Atef",
                             Rating = 5
                         },
                         new
                         {
                             Id = 3,
-                            Availability = "Mon-Wed, 11 AM - 7 PM",
+                            Availablility = "Mon-Wed, 11 AM - 7 PM",
                             Bio = "Specializes in trauma-informed therapist who specializes in helping clients heal from PTSD and complex trauma",
                             Email = "RahmaTarek111@gmail.com",
-                            FullName = "Rahma Tarek",
                             Img = "doctors-2.jpg",
+                            Name = "Rahma Tarek",
                             Rating = 5
                         },
                         new
                         {
                             Id = 4,
-                            Availability = "Wed-Fri, 12 PM - 8 PM",
+                            Availablility = "Wed-Fri, 12 PM - 8 PM",
                             Bio = "Specializes in workplace stress and burnout. She helps clients manage stress, improve work-life balance, and develop resilience through mindfulness and stress-reduction techniques.",
                             Email = "NancySaad111@gmail.com",
-                            FullName = "Nancy Saad",
                             Img = "doctors-2.jpg",
+                            Name = "Nancy Saad",
                             Rating = 5
                         },
                         new
                         {
                             Id = 5,
-                            Availability = "Mon-Thu, 9 AM - 4 PM",
+                            Availablility = "Mon-Thu, 9 AM - 4 PM",
                             Bio = "licensed psychologist specializing in the treatment of Obsessive-Compulsive Disorder (OCD), She helps clients reduce compulsions and manage intrusive thoughts. With over 10 years of experience",
                             Email = "HamssMohamed111@gmail.com",
-                            FullName = "Hamss Mohammed",
                             Img = "doctors-2.jpg",
+                            Name = "Hamss Mohammed",
                             Rating = 5
                         });
                 });
@@ -527,17 +527,13 @@ namespace MVC_Project.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("FName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Gender")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("HealthAssessmentResults")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("LName")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -561,10 +557,9 @@ namespace MVC_Project.Migrations
                             Id = 1,
                             DateOfBirth = new DateTime(1999, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "SarahAhmed12@gmail.com",
-                            FName = "Sarah",
                             Gender = "Female",
                             HealthAssessmentResults = "Anxiety",
-                            LName = "Ahmed",
+                            Name = "Sarah Ahmed",
                             Password = "123456",
                             PhoneNumber = "01012345678",
                             Preferences = "Prefers video calls"
@@ -574,10 +569,9 @@ namespace MVC_Project.Migrations
                             Id = 2,
                             DateOfBirth = new DateTime(2003, 7, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "MohammedMahmoud33@gmail.com",
-                            FName = "Mohammed",
                             Gender = "Male",
                             HealthAssessmentResults = "OCD",
-                            LName = "Mahmoud",
+                            Name = "Mohammed Mahmoud",
                             Password = "1234567",
                             PhoneNumber = "01033345678",
                             Preferences = "Prefers video calls"
@@ -587,10 +581,9 @@ namespace MVC_Project.Migrations
                             Id = 3,
                             DateOfBirth = new DateTime(2000, 3, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "ToqaAli25@gmail.com",
-                            FName = "Toqa",
                             Gender = "Male",
                             HealthAssessmentResults = "MildDepression",
-                            LName = "Ali",
+                            Name = "Toqa Ali",
                             Password = "12345678",
                             PhoneNumber = "01044445678",
                             Preferences = "Prefers Chat"
@@ -600,10 +593,9 @@ namespace MVC_Project.Migrations
                             Id = 4,
                             DateOfBirth = new DateTime(1995, 8, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Yara.Hassan@example.com",
-                            FName = "Yara",
                             Gender = "Female",
                             HealthAssessmentResults = "Anxiety",
-                            LName = "Hassan",
+                            Name = "Yara Hassan",
                             Password = "SecurePass123",
                             PhoneNumber = "01055556789",
                             Preferences = "Prefers video calls"
@@ -613,10 +605,9 @@ namespace MVC_Project.Migrations
                             Id = 5,
                             DateOfBirth = new DateTime(1998, 11, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Omar.Ibrahim@example.com",
-                            FName = "Omar",
                             Gender = "Male",
                             HealthAssessmentResults = "PanicDisorder",
-                            LName = "Ibrahim",
+                            Name = "Omar Ibrahim",
                             Password = "OmarPass2023",
                             PhoneNumber = "01066667890",
                             Preferences = "Prefers text therapy"
@@ -626,10 +617,9 @@ namespace MVC_Project.Migrations
                             Id = 6,
                             DateOfBirth = new DateTime(1992, 4, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Lina.Mahmoud@example.com",
-                            FName = "Lina",
                             Gender = "Female",
                             HealthAssessmentResults = "PTSD",
-                            LName = "Mahmoud",
+                            Name = "Lina Mahmoud",
                             Password = "Lina123!",
                             PhoneNumber = "01077778901",
                             Preferences = "Prefers evening sessions"
@@ -639,10 +629,9 @@ namespace MVC_Project.Migrations
                             Id = 7,
                             DateOfBirth = new DateTime(1997, 7, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Karim.Adel@example.com",
-                            FName = "Karim",
                             Gender = "Male",
                             HealthAssessmentResults = "OCD",
-                            LName = "Adel",
+                            Name = "Karim Adel",
                             Password = "Karim@789",
                             PhoneNumber = "01088889012",
                             Preferences = "Prefers weekly sessions"
@@ -652,10 +641,9 @@ namespace MVC_Project.Migrations
                             Id = 8,
                             DateOfBirth = new DateTime(2001, 1, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Nour.Samir@example.com",
-                            FName = "Nour",
                             Gender = "Female",
                             HealthAssessmentResults = "MildDepression",
-                            LName = "Samir",
+                            Name = "Nour Samir",
                             Password = "NourPass!",
                             PhoneNumber = "01099990123",
                             Preferences = "Prefers female therapists"

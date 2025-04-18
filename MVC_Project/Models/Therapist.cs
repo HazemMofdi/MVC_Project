@@ -9,13 +9,13 @@ namespace MVC_Project.Models
         [Key]
         public int Id { get; set; }
         [Required]
-        public string FullName { get; set; }
+        public string Name { get; set; }
         public string Img { get; set; }
         [Required]
         public string Email { get; set; }
         public string? Bio { get; set; }
         public int? Rating { get; set; }
-        public string? Availability { get; set; }
+        public string? Availablility { get; set; }
 
         // Relations
 
