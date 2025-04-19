@@ -847,11 +847,11 @@ h6 {
 --------------------------------------------------------------*/
 section,
 .section {
-  color: var(--default-color);
-  background-color: var(--background-color);
-  padding: 60px 0;
-  scroll-margin-top: 72px;
-  overflow: clip;
+    color: var(--default-color);
+    background-color: var(--background-color);
+    padding: 0 0 60px 0;
+    scroll-margin-top: 72px;
+    overflow: clip;
 }
 
 @media (max-width: 1199px) {
