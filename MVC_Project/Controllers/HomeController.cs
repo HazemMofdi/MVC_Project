@@ -29,7 +29,14 @@ namespace MVC_Project.Controllers
         {
             return View();
         }
-   
+        public IActionResult register()
+        {
+            return View();
+        }
+        public IActionResult MakeAppointment()
+        {
+            return View();
+        }   
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

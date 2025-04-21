@@ -10,10 +10,8 @@
         min-height: 100vh;
         background: #f0faff;
     }
-    .form.login {
-        margin: 60px;
-    }
-    .login form {
+
+        .signup form {
         width: 450px;
         display: flex;
         justify-content: center;
@@ -24,15 +22,22 @@
         gap: 20px;
         padding: 20px;
         margin: 0 auto;
-    }
-
+     }
+ 
     .form header {
         padding: 20px;
         font-size: 30px;
         text-align: center;
         color: #1977cc;
         font-weight: 600;
+        cursor: pointer;
     }
+
+    .form.login header {
+        color: #333;
+        opacity: 0.6;
+    }
+
 
     form input {
         height: 60px;
@@ -47,24 +52,18 @@
         background: #fff;
     }
 
-    
-    .form.login input {
+    .form.signup input {
         border: 1px solid #aaa;
+
     }
 
-    .form.login input:first-child {
-            margin-top: 45px;
+    .form.signup input:first-child {
+			margin-top: 30px;
     }
 
-        .form.login input:focus {
-            box-shadow: 0 1px 0 #ddd;
-        }
-
-    form .checkbox {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
+    .form.signup input:focus {
+        box-shadow: 0 1px 0 #ddd;
+     }
 
     .checkbox input[type="checkbox"] {
         height: 16px;
@@ -79,57 +78,57 @@
     }
 
     form a {
-        color: white;
+        color: #4070f4 !important;
         text-decoration: none;
     }
 
-    form p {
-        color: white;
-    }
-        form a:hover {
+     form a:hover {
             text-decoration: underline;
-        color: #2c4964;
         }
 
     form input[type="submit"] {
+		border: none !important;
         background-color: #1977cc;
         color: white;
         margin-top: 15px;
         font-size: 18px;
         font-weight: 500;
-		border: none !important;
 		transition: all 0.3s ease;
     }
 
-        form input[type="submit"]:hover {
-
-            width:150px;
+    form input[type="submit"]:hover {
             background-color: #2c4964c9;
-        }
+            width:100px;
+            
+    }
+
 </style>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login</title>
-    <link rel="stylesheet" href="~/assets/css/form.css" />
+    <title>Signup</title>
 </head>
-<body>
-    <div class="form login">
-        <header>Login</header>
-        <form action="#" method="post">
-            <input type="text" placeholder="Email address" required />
-            <input type="password" placeholder="Password" required />
-            <a href="#">Forgot password?</a>
-            <input type="submit" value="Login" />
-            <p>
-                Don't have an account? <a href="register/" style="color: #4070f4; text-decoration: underline;">Signup</a>
-            </p>
 
-        </form>
-    </div>
+<body>
+    <section class="wrapper">
+        <div class="form signup">
+            <header>Signup</header>
+            <form action="#" method="post">
+                <input type="text" placeholder="Full name" required />
+                <input type="text" placeholder="Email address" required />
+                <input type="password" placeholder="Password" required />
+                <div class="checkbox">
+                    <input type="checkbox" id="signupCheck" />
+                    <label for="signupCheck">I accept all terms & conditions</label>
+                </div>
+                <input type="submit" value="Signup" />
+                <p style="text-align: center; color: white;">
+                    Already have an account? <a href="/home/login" style="color: #fff; text-decoration: underline;">Login</a>
+                </p>
+            </form>
+        </div>
+    </section>
 </body>
 </html>
-
-                  

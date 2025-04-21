@@ -5,7 +5,16 @@
 * Author: BootstrapMade.com
 * License: https://bootstrapmade.com/license/
 */
+document.querySelectorAll(".navmenu ul li").forEach(function (li) {
+    li.onclick = function () {
 
+        document.querySelectorAll(".navmenu ul li").forEach(function (item) {
+            item.classList.remove("active");
+        });
+
+        li.classList.add("active");
+    };
+});
 (function() {
   "use strict";
 
