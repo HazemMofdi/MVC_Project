@@ -2,9 +2,9 @@
 
 <style>
     .doctor-card {
-		z-index: 1;
+		z-index:10000;
         display:none;
-        width: 300px;
+        width: 500px;
         padding: 20px;
         border: 1px solid #ddd;
         border-radius: 12px;
@@ -31,7 +31,7 @@
     }
 
     .doctor-name {
-        font-size: 20px;
+        font-size: 30px;
         margin: 10px 0 5px;
         color: #333;
     }
@@ -41,20 +41,20 @@
     .doctor-rating,
     .doctor-price {
         margin: 5px 0;
-        color: #666;
-        font-size: 14px;
+        color: #1b65a7;
+        font-size: 20px;
     }
 
     .doctor-bio {
-        font-size: 13px;
+        font-size: 18px;
         color: #777;
-        margin: 10px 0;
+        margin: 15px 0;
     }
     .doc-btn {
         position: absolute;
         bottom: 0;
         right: 0;
-        padding: 5px;
+        padding: 5px 10px;
         font-size: 14px;
         border: none;
         margin: 10px;
@@ -87,7 +87,8 @@
     <div class="container section-title" data-aos="fade-up">
         <h2>Therapists</h2>
         <p>Our Amazing Team</p>
-    </div><!-- End Section Title -->
+    </div>
+    <!-- End Section Title -->
 
     <div class="container">
 
@@ -101,7 +102,7 @@
                         <div class="member-info">
                             <h4 class="DB-doctor-name">@item.Name</h4>
                             <p>@item.Bio</p>
-                            <button class="doc-btn" >View more</button>
+                            <button class="doc-btn" >More</button>
                         </div>
                     </div>
                 </div>
@@ -112,7 +113,7 @@
                     <p class="doctor-experience">10 years of experience</p>
                     <p class="doctor-rating">⭐⭐⭐⭐⭐ <br>@item.Rating (4 reviews)</p>
                     <p class="doctor-bio">@item.Bio</p>
-                    <p class="doctor-price">Session Price: 200 SAR</p>
+                    <p class="doctor-price">Session Price: 200</p>
                     <span class="exit">X</span>
                 </div>
             }
