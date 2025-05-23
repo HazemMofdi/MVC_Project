@@ -85,25 +85,35 @@ namespace MVC_Project.Controllers
         [HttpGet]
         public IActionResult DocFeedback()
         {
-            var user = _db.Users
-                .Select(t => new SelectListItem
+            var users = _db.Users
+                .Select(u => new SelectListItem
                 {
-                    Value = t.Id.ToString(),   // therapist id
-                    Text = t.FullName             // therapist name
+                    Value = u.Id.ToString(),
+                    Text = u.FullName
                 })
                 .ToList();
 
-            ViewBag.Therapists = user;
+            var moodRatings = Enum.GetNames(typeof(MoodRatingEnum))
+                .Select(r => new SelectListItem
+                {
+                    Value = r,
+                    Text = r
+                })
+                .ToList();
+
+            ViewBag.Users = users;
+            ViewBag.MoodRatings = moodRatings;
 
             return View();
         }
+
 
         [HttpPost]
         public async Task<IActionResult> DocFeedback(ProgressViewModel model)
         {
             var email = User.FindFirstValue(ClaimTypes.Email);
             var therapist = await _db.Therapists.FirstOrDefaultAsync(u => u.Email == email);
-            if (therapist == null) return RedirectToAction("Doc_login", "SignUp_Login");
+            if (therapist == null) return RedirectToAction("login", "SignUp_Login");
 
 
 
@@ -150,22 +160,6 @@ namespace MVC_Project.Controllers
         {
             return View();
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     }
 }

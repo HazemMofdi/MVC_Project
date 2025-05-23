@@ -1,9 +1,11 @@
 ﻿@model MVC_Project.ViewModels.ProgressViewModel
+
 <style>
     .main {
         min-height: 80vh;
     }
 </style>
+
 <section id="appointment" class="appointment section">
     <div class="container section-title aos-init aos-animate" data-aos="fade-up">
         <h2>Feedback</h2>
@@ -14,53 +16,36 @@
 
             <div class="row">
                 <div class="col-md-4 form-group mt-3">
-                    <input asp-for="Date" type="datetime-local" class="form-control" required step="3600" />
+                    <input asp-for="Date" id="date" type="datetime-local" class="form-control" required step="3600" />
                 </div>
-                <div class="col-md-4 form-group mt-3">
-                    <select asp-for="MoodRating" class="form-select" required>
-                        <option value="">Select Session Type</option>
-                        <option value="Perfect">Perfect</option>
-                        <option value="Outstanding">Outstanding</option>
-                        <option value="Excellent">Excellent</option>
-                        <option value="VeryGood">VeryGood</option>
-                        <option value="Good">Good</option>
-                        <option value="AboveAverage">AboveAverage</option>
-                        <option value="Average">Average</option>
-                        <option value="BelowAverage">BelowAverage</option>
-                        <option value="Poor">Poor</option>
-                        <option value="VeryPoor">VeryPoor</option>
-                    </select>
-                </div>
-                <div class="col-md-4 form-group mt-3">
-                    <select asp-for="UserID" class="form-select" required>
-                        <option value="">Select User</option>
-                        <option value="1">Sarah Ahmedd</option>
-                        <option value="2">Mohammed Mahmoud</option>
-                        <option value="3">Toqa Ali</option>
-                        <option value="4">Yara Hassan</option>
-                        <option value="5">Omar Ibrahim</option>
-                        <option value="6">Lina Mahmoud</option>
-                        <option value="7">Karim Adel</option>
-                        <option value="8">Nour Samir</option>
-                    </select>
 
+                <div class="col-md-4 form-group mt-3">
+                    <select asp-for="MoodRating" class="form-select" asp-items="ViewBag.MoodRatings" required>
+                        <option value="">Select Mood Rating</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4 form-group mt-3">
+                    <select asp-for="UserID" class="form-select" asp-items="ViewBag.Users" required>
+                        <option value="">Select User</option>
+                    </select>
                 </div>
             </div>
 
             <div class="form-group mt-3">
-                <textarea asp-for="ProgressNotes" class="form-control" rows="5" placeholder="ProgressNotes (Optional)"></textarea>
+                <textarea asp-for="ProgressNotes" class="form-control" rows="5" placeholder="Progress Notes (Optional)"></textarea>
             </div>
+
             <div class="form-group mt-3">
                 <textarea asp-for="Goals" class="form-control" rows="5" placeholder="Goals (Optional)"></textarea>
             </div>
 
             <div class="text-center mt-3">
-                <button type="submit">Make a Feedback</button>
+                <button type="submit" class="btn btn-primary px-4">Make Feedback</button>
             </div>
         </form>
     </div>
 </section>
-
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -72,11 +57,10 @@
             now.setSeconds(0);
             now.setMilliseconds(0);
 
-            var localDatetime = now.toISOString().slice(0,16);
+            var localDatetime = now.toISOString().slice(0, 16);
             dateInput.min = localDatetime;
         }
 
         setMinDateTime();
     });
 </script>
-

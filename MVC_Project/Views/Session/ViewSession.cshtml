@@ -1,54 +1,84 @@
 ﻿@model List<Session>
-<style>
-    .main{
-        min-height: 80vh;
-    }
-</style>
+@{
+    var canceledSessions = ViewBag.CanceledSessions as List<Session>;
+    var role = ViewBag.Role as string;
+}
+
 <div class="container section-title" data-aos="fade-up">
     <h2>Sessions</h2>
     <p>@ViewBag.FullName's Sessions</p>
 </div>
 
-<table border="1">
+<!-- Main Sessions Table -->
+<table>
     <thead>
         <tr>
             <th>Session ID</th>
             <th>Session Date</th>
             <th>Session Type</th>
-            <th>Session Status</th>
             <th>Session Notes</th>
-            <th>Session Cancelation</th>
+            <th>Session Status</th> <!-- moved here -->
         </tr>
     </thead>
     <tbody>
         @foreach (var session in Model)
         {
-            var isPast = session.SessionDate.Date < DateTime.Now.Date;
-            var status = session.SessionStatus == "Booked" && isPast ? "Completed" : session.SessionStatus;
-
             <tr>
                 <td>@session.Id</td>
                 <td>@session.SessionDate.ToShortDateString()</td>
                 <td>@session.SessionType</td>
-                <td>@status</td>
                 <td>@session.SessionNotes</td>
                 <td>
-                    @if (status == "Booked")
+                    @if (session.SessionStatus == "Completed")
+                    {
+                        <div class="status-box completed">Completed</div>
+                    }
+                    else if (session.SessionStatus == "Booked")
                     {
                         <form asp-action="CancelSession" asp-controller="Session" method="post" style="margin:0;">
                             <input type="hidden" name="id" value="@session.Id" />
-                            <button type="submit" class="btn btn-danger">Cancel</button>
+                            <button type="submit" class="status-box red-button">Cancel</button>
                         </form>
-                    }
-                    else
-                    {
-                        <span>-</span>
                     }
                 </td>
             </tr>
         }
     </tbody>
 </table>
+
+<!-- Canceled Sessions Table (Visible to Doctor Only) -->
+@if (role == "Doctor" && canceledSessions != null && canceledSessions.Count > 0)
+{
+    <div class="container section-title" data-aos="fade-up" style="margin-top: 40px;">
+        <h2>Canceled Sessions</h2>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Session ID</th>
+                <th>Session Date</th>
+                <th>Session Type</th>
+                <th>Session Notes</th>
+                <th>Session Status</th> <!-- moved here too -->
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var session in canceledSessions)
+            {
+                <tr>
+                    <td>@session.Id</td>
+                    <td>@session.SessionDate.ToShortDateString()</td>
+                    <td>@session.SessionType</td>
+                    <td>@session.SessionNotes</td>
+                    <td>
+                        <div class="status-box red-button">Canceled</div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
 
 <style>
     table {
@@ -76,6 +106,29 @@
 
     tbody tr:hover {
         background-color: #e0f7fa;
-        cursor: pointer;
     }
+
+    .status-box {
+        padding: 8px 12px;
+        border-radius: 4px;
+        font-weight: bold;
+        display: inline-block;
+        width: 100%;
+        text-align: center;
+    }
+
+    .completed {
+        background-color: #28a745;
+        color: white;
+    }
+
+    .red-button {
+        background-color: #dc3545;
+        color: white;
+        border: none;
+    }
+
+        .red-button:hover {
+            background-color: #c82333;
+        }
 </style>

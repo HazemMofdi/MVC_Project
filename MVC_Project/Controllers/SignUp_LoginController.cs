@@ -100,7 +100,7 @@ namespace MVC_Project.Controllers
         {
             new Claim(ClaimTypes.Name, doctor.FullName),
             new Claim(ClaimTypes.Email, doctor.Email),
-            new Claim(ClaimTypes.Role, "Doctor") // 🔥
+            new Claim(ClaimTypes.Role, "Doctor") 
         };
 
                 var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
@@ -362,7 +362,7 @@ namespace MVC_Project.Controllers
             else if (User.IsInRole("Doctor"))
             {
                 var therapist = await _db.Therapists.FirstOrDefaultAsync(d => d.Email == email);
-                if (therapist == null) return RedirectToAction("Doc_Login", "SignUp_Login");
+                if (therapist == null) return RedirectToAction("Login", "SignUp_Login");
 
                 return View(new UserProfileViewModel
                 {
@@ -575,7 +575,7 @@ namespace MVC_Project.Controllers
                 await _db.SaveChangesAsync();
 
                 TempData["Success"] = "Password changed successfully!";
-                return RedirectToAction("Doc_Login", "SignUp_Login");
+                return RedirectToAction("Login", "SignUp_Login");
             }
 
             ModelState.AddModelError("", "Email not found in our records!");

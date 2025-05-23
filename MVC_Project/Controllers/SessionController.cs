@@ -34,13 +34,14 @@ namespace MVC_Project.Controllers
         //}
 
         [Authorize]
-        public IActionResult ViewSession()
+        public async Task<IActionResult> ViewSession()
         {
             var email = HttpContext.User?.FindFirst(ClaimTypes.Email)?.Value;
             var role = HttpContext.User?.FindFirst(ClaimTypes.Role)?.Value;
             var fullName = HttpContext.User?.FindFirst(ClaimTypes.Name)?.Value;
 
             ViewBag.FullName = fullName;
+            ViewBag.Role = role;
 
             if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(role))
             {
@@ -48,13 +49,16 @@ namespace MVC_Project.Controllers
             }
 
             List<Session> sessionList = new List<Session>();
+            List<Session> canceledSessions = new List<Session>();
 
             if (role == "User")
             {
-                var user = _db.Users.FirstOrDefault(u => u.Email == email);
+                var user = await _db.Users.FirstOrDefaultAsync(u => u.Email == email);
                 if (user != null)
                 {
-                    sessionList = _db.Sessions.Where(s => s.UserID == user.Id).ToList();
+                    sessionList = await _db.Sessions
+                        .Where(s => s.UserID == user.Id && s.SessionStatus != "Canceled")
+                        .ToListAsync();
                 }
                 else
                 {
@@ -63,14 +67,20 @@ namespace MVC_Project.Controllers
             }
             else if (role == "Doctor")
             {
-                var therapist = _db.Therapists.FirstOrDefault(t => t.Email == email);
+                var therapist = await _db.Therapists.FirstOrDefaultAsync(t => t.Email == email);
                 if (therapist != null)
                 {
-                    sessionList = _db.Sessions.Where(s => s.TherapistID == therapist.Id).ToList();
+                    sessionList = await _db.Sessions
+                        .Where(s => s.TherapistID == therapist.Id && s.SessionStatus != "Canceled")
+                        .ToListAsync();
+
+                    canceledSessions = await _db.Sessions
+                        .Where(s => s.TherapistID == therapist.Id && s.SessionStatus == "Canceled")
+                        .ToListAsync();
                 }
                 else
                 {
-                    return RedirectToAction("Doc_Login", "SignUp_Login");
+                    return RedirectToAction("Login", "SignUp_Login");
                 }
             }
             else
@@ -78,17 +88,27 @@ namespace MVC_Project.Controllers
                 return RedirectToAction("Login", "SignUp_Login");
             }
 
-            // ✅ Update status for past sessions
+            // ✅ Update past sessions' status to "Completed"
+            bool updated = false;
             foreach (var session in sessionList)
             {
-                if (session.SessionStatus == "Booked" && session.SessionDate.Date < DateTime.Now.Date)
+                if (session.SessionStatus == "Booked" && session.SessionDate < DateTime.Now)
                 {
                     session.SessionStatus = "Completed";
+                    _db.Sessions.Update(session);
+                    updated = true;
                 }
             }
 
+            if (updated)
+            {
+                await _db.SaveChangesAsync();
+            }
+
+            ViewBag.CanceledSessions = canceledSessions;
             return View(sessionList);
         }
+
 
 
 
@@ -125,11 +145,6 @@ namespace MVC_Project.Controllers
             var user = await _db.Users.FirstOrDefaultAsync(u => u.Email == email);
             if (user == null) return RedirectToAction("Login", "SignUp_Login");
 
-
-
-
-
-            // 🌟 Find the therapist by name
             var therapist = await _db.Therapists.FirstOrDefaultAsync(t => t.Id == model.TherapistID);
             if (therapist == null)
             {
@@ -141,6 +156,19 @@ namespace MVC_Project.Controllers
             {
                 ModelState.AddModelError("", "You cannot book a session in the past.");
                 return RedirectToAction("MakeAppointment", "Home");
+            }
+
+            // ❌ Check if the user already has a session with the same therapist at the same date
+            bool sessionExists = await _db.Sessions.AnyAsync(s =>
+                s.TherapistID == model.TherapistID &&
+                s.UserID == user.Id &&
+                s.SessionDate == model.Date.Date &&
+                s.SessionStatus != "Canceled" // exclude canceled sessions
+            );
+
+            if (sessionExists)
+            {
+                return RedirectToAction("SessionConflict", "Session");
             }
 
             var session = new Session
@@ -159,13 +187,17 @@ namespace MVC_Project.Controllers
             }
 
             _db.Sessions.Add(session);
-            _db.SaveChanges();
+            await _db.SaveChangesAsync();
 
             TempData["Success"] = "Session booked successfully!";
             return RedirectToAction("SessionSuccess");
         }
 
 
+        public IActionResult SessionConflict()
+        {
+            return View();
+        }
 
         public IActionResult SessionSuccess()
         {
@@ -192,7 +224,7 @@ namespace MVC_Project.Controllers
         {
             var session = _db.Sessions.FirstOrDefault(s => s.Id == id);
             session.SessionStatus = "Canceled";
-            _db.Sessions.Remove(session);
+            _db.Sessions.Update(session);
             _db.SaveChanges();
             TempData["Success"] = "Session Is Canceled!";
             return RedirectToAction("ViewSession"); // replace with the name of your view method
