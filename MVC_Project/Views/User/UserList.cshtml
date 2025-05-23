@@ -1,0 +1,94 @@
+﻿@model List<User>
+@{
+    var accessDenied = ViewBag.AccessDenied != null && (bool)ViewBag.AccessDenied;
+}
+
+@{
+    string role = ViewBag.Role as string ?? "User"; // fallback to "User"
+}
+
+<style>
+    .main {
+        min-height: 80vh;
+    }
+</style>
+
+<div class="container section-title" data-aos="fade-up">
+    @if (role == "Doctor")
+    {
+        <h2>Welcome Doctor</h2>
+        <p>Our Clients Information</p>
+    }
+    else
+    {
+        <h2>Doctors Only Section</h2>
+        
+    }
+</div>
+
+@if (accessDenied)
+{
+    <div >
+        <h3 style="color:red; text-align:center; font-weight:bold; margin-top:20px;">You do not have access to view the users list. This section is restricted to doctors only.</h3>
+    </div>
+}
+else
+{
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>PhoneNumber</th>
+                <th>Date Of Birth</th>
+                <th>Gender</th>
+                <th>Preferences</th>
+                <th>HealthAssessment</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td>@user.FullName</td>
+                    <td>@user.Email</td>
+                    <td>@user.PhoneNumber</td>
+                    <td>@user.DateOfBirth</td>
+                    <td>@user.Gender</td>
+                    <td>@user.Preferences</td>
+                    <td>@user.HealthAssessmentResults</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<style>
+    table {
+        width: 80%;
+        margin: 20px auto;
+        border-collapse: collapse;
+        font-family: 'Segoe UI', sans-serif;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    th, td {
+        padding: 12px 15px;
+        border: 1px solid #ddd;
+        text-align: center;
+    }
+
+    thead {
+        background-color: #007bff;
+        color: white;
+    }
+
+    tbody tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    tbody tr:hover {
+        background-color: #e0f7fa;
+        cursor: pointer;
+    }
+</style>

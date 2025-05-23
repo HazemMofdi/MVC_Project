@@ -1,37 +1,61 @@
 ﻿@model List<ProgressTracking>
 
-
-
+<style>
+    .main {
+        min-height: 80vh;
+    }
+</style>
+@{
+    string role = ViewBag.Role as string ?? "User"; // fallback to "User"
+    string fullName = ViewBag.FullName as string ?? "User";
+}
 
 <div class="container section-title" data-aos="fade-up">
-    <h2>Our Clients Progress</h2>
-    <p>@ViewBag.FullName's Progress</p>
+    @if (role == "Doctor")
+    {
+        <h2>Our Clients' Sessions Progress</h2>
+        <p>Sessions progress overview for our clients</p>
+    }
+    else
+    {
+        <h2>Your Sessions Progress</h2>
+        <p>@fullName's personal session history</p>
+    }
 </div>
 
-<table border="1">
-    <thead>
-        <tr>
-            <th>Progress ID</th>
-            <th>Progress Date</th>
-            <th>Progress Notes</th>
-            <th>Progress Goals</th>
-            <th>Mode Progress</th>
-
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var Progress in Model)
-        {
+@if (!Model.Any())
+{
+    <div class="alert alert-warning text-center mt-4">
+        No progress records found.
+    </div>
+}
+else
+{
+    <table border="1">
+        <thead>
             <tr>
-                <td>@Progress.Id</td>
-                <td>@Progress.Date</td>
-                <td>@Progress.ProgressNotes</td>
-                <td>@Progress.Goals</td>
-                <td>@Progress.MoodRating</td>
+                <th>Progress ID</th>
+                <th>Progress Date</th>
+                <th>Progress Notes</th>
+                <th>Progress Goals</th>
+                <th>Mood Rating</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var Progress in Model)
+            {
+                <tr>
+                    <td>@Progress.Id</td>
+                    <td>@Progress.Date.ToShortDateString()</td>
+                    <td>@Progress.ProgressNotes</td>
+                    <td>@Progress.Goals</td>
+                    <td>@Progress.MoodRating</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
 <style>
     table {
         width: 80%;
@@ -59,5 +83,11 @@
     tbody tr:hover {
         background-color: #e0f7fa;
         cursor: pointer;
+    }
+
+    .alert {
+        width: 60%;
+        margin: 0 auto;
+        font-size: 1.1rem;
     }
 </style>

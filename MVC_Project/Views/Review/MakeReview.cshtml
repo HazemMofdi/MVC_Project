@@ -1,0 +1,85 @@
+﻿@model MVC_Project.ViewModels.ReviewViewModel
+<style>
+    .main {
+        min-height: 80vh;
+    }
+
+    .make-review-btn {
+        padding: 5px 10px;
+        font-size: 14px;
+        border: none;
+        margin: 80px 0;
+        transition: 0.3s;
+        background-color: #1977cc;
+        color: white;
+    }
+
+        .make-review-btn:hover {
+            background-color: #1977ccc2;
+            color: white;
+        }
+</style>
+<section id="appointment" class="appointment section">
+    <div class="container section-title aos-init aos-animate" data-aos="fade-up">
+        <h2>Review</h2>
+    </div>
+
+    <div class="container aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
+        <form asp-action="MakeReview" asp-controller="Review" method="post">
+
+            <div class="row">
+                <div class="col-md-4 form-group mt-3">
+                    <input asp-for="Date" type="datetime-local" class="form-control" required step="3600" />
+                </div>
+                <div class="col-md-4 form-group mt-3">
+                    <select asp-for="Rating" class="form-select" required>
+                        <option value="">Select Rating</option>
+                        <option value="Excellent">Excellent</option>
+                        <option value="Good">Good</option>
+                        <option value="Average">Average</option>
+                        <option value="Fair">Fair</option>
+                        <option value="Poor">Poor</option>
+                    </select>
+                </div>
+                <div class="col-md-4 form-group mt-3">
+                    <select asp-for="TherapistID" class="form-select" required>
+                        <option value="">Select Doctor</option>
+                        <option value="1">Hazem Mofdi</option>
+                        <option value="2">Hassan Atef</option>
+                        <option value="3">Rahma Tarek</option>
+                        <option value="4">Nancy Saad</option>
+                        <option value="5">Hamss Mohammed</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group mt-3">
+                <textarea asp-for="ReviewText" class="form-control" rows="5" placeholder="Message (Optional)"></textarea>
+            </div>
+
+            <div class="text-center mt-3">
+                <button class="make-review-btn" type="submit">Make a Review</button>
+            </div>
+        </form>
+    </div>
+</section>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var dateInput = document.getElementById("date");
+
+        function setMinDateTime() {
+            var now = new Date();
+            now.setMinutes(0);
+            now.setSeconds(0);
+            now.setMilliseconds(0);
+
+            var localDatetime = now.toISOString().slice(0,16);
+            dateInput.min = localDatetime;
+        }
+
+        setMinDateTime();
+    });
+</script>
+

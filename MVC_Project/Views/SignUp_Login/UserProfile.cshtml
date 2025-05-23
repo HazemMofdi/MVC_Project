@@ -1,0 +1,141 @@
+﻿
+@using MVC_Project.ViewModels
+@using Microsoft.AspNetCore.Identity
+@model UserProfileViewModel
+<style>
+    form{
+        position:relative;
+    }
+    .form-container{
+        width: 600px;
+        margin: 0 auto;
+    }
+    .form-group{
+        display: flex;
+        gap: 20px;
+        margin: 20px;
+        padding: 20px;
+    }
+
+    .form-group.last-form {
+     margin-bottom:90px;
+    }
+
+    .form-group input {
+    }
+
+    .btn.btn-primary{
+        margin-top: 34px;
+        position: absolute;
+        bottom: -50px;
+        right: 50%;
+    }
+    </style>
+<form asp-action="UserProfile" method="post" enctype="multipart/form-data">
+    <div class="form-container">
+        <!-- Common fields for all users -->
+        <div class="form-group">
+            <label>Profile Image</label><br />
+            @if (!string.IsNullOrEmpty(@Model.ImagePath))
+            {
+                <img src="~/images/@Model.ImagePath" class="img-thumbnail" width="150" height="150" />
+            }
+            else
+            {
+                <img src="~/images/default.jpeg" class="img-thumbnail" width="150" height="150" />
+            }
+        </div>
+
+        <!-- File upload -->
+        <div class="form-group">
+            <label asp-for="ImageFile">Upload new image</label>
+            <input type="file" asp-for="ImageFile" class="form-control-file" />
+        </div>
+
+        <!-- Basic info -->
+        <div class="form-group">
+            <label asp-for="FullName"></label>
+            <input asp-for="FullName" class="form-control" />
+            <span asp-validation-for="FullName" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Email"></label>
+            <input asp-for="Email" class="form-control" readonly />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Password"></label>
+            <input asp-for="Password" class="form-control" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+
+        <!-- User-specific fields -->
+        @if (User.IsInRole("User"))
+        {
+            <div class="form-group">
+                <label asp-for="Preferences"></label>
+                <textarea asp-for="Preferences" class="form-control"></textarea>
+                <span asp-validation-for="Preferences" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="DateOfBirth"></label>
+                <input asp-for="DateOfBirth" type="date" class="form-control" />
+                <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Gender"></label>
+                <select asp-for="Gender" class="form-control">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select>
+                <span asp-validation-for="Gender" class="text-danger"></span>
+            </div>
+
+            <div class="form-group last-form">
+                <label asp-for="HealthAssessmentResults"></label>
+                <select asp-for="HealthAssessmentResults" class="form-control">
+                    <option value="">-- Select Health Assessment --</option>
+                    <option value="Anxiety">Anxiety</option>
+                    <option value="MildDepression">Mild Depression</option>
+                    <option value="SevereStress">Severe Stress</option>
+                    <option value="PTSD">PTSD</option>
+                    <option value="OCD">OCD</option>
+                    <option value="BipolarDisorder">Bipolar Disorder</option>
+                    <option value="PanicDisorder">Panic Disorder</option>
+                </select>
+                <span asp-validation-for="HealthAssessmentResults" class="text-danger"></span>
+            </div>
+        }
+
+        <!-- Therapist-specific fields -->
+        @if (User.IsInRole("Doctor"))
+        {
+            <div class="form-group ">
+                <label asp-for="Bio"></label>
+                <textarea asp-for="Bio" class="form-control"></textarea>
+                <span asp-validation-for="Bio" class="text-danger"></span>
+            </div>
+
+            <div class="form-group last-form">
+                <label asp-for="Availability"></label>
+                <input asp-for="Availability" class="form-control" />
+                <span asp-validation-for="Availability" class="text-danger"></span>
+            </div>
+        }
+
+        <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+
+   
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

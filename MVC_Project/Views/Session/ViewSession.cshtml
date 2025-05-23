@@ -1,39 +1,55 @@
 ﻿@model List<Session>
-
-    
-
+<style>
+    .main{
+        min-height: 80vh;
+    }
+</style>
 <div class="container section-title" data-aos="fade-up">
     <h2>Sessions</h2>
     <p>@ViewBag.FullName's Sessions</p>
 </div>
-
-
 
 <table border="1">
     <thead>
         <tr>
             <th>Session ID</th>
             <th>Session Date</th>
-            <th>Session Time</th>
             <th>Session Type</th>
             <th>Session Status</th>
             <th>Session Notes</th>
+            <th>Session Cancelation</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var session in Model)
         {
+            var isPast = session.SessionDate.Date < DateTime.Now.Date;
+            var status = session.SessionStatus == "Booked" && isPast ? "Completed" : session.SessionStatus;
+
             <tr>
                 <td>@session.Id</td>
-                <td>@session.SessionDate</td>
-                <td>@session.SessionTime</td>
+                <td>@session.SessionDate.ToShortDateString()</td>
                 <td>@session.SessionType</td>
-                <td>@session.SessionStatus</td>
+                <td>@status</td>
                 <td>@session.SessionNotes</td>
+                <td>
+                    @if (status == "Booked")
+                    {
+                        <form asp-action="CancelSession" asp-controller="Session" method="post" style="margin:0;">
+                            <input type="hidden" name="id" value="@session.Id" />
+                            <button type="submit" class="btn btn-danger">Cancel</button>
+                        </form>
+                    }
+                    else
+                    {
+                        <span>-</span>
+                    }
+                </td>
             </tr>
         }
     </tbody>
 </table>
+
 <style>
     table {
         width: 80%;

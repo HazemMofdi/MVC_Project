@@ -61,10 +61,22 @@
 # General Styling & Shared Classes
 --------------------------------------------------------------*/
 body {
-  color: var(--default-color);
-  background-color: var(--background-color);
-  font-family: var(--default-font);
+    position: relative;
+    color: var(--default-color);
+    background-color: var(--background-color);
+    font-family: var(--default-font);
+    --before-width:0;
 }
+
+
+    body::before {
+        z-index: 1000;
+        content: "";
+        position: absolute;
+        width: var(--before-width);
+        height: 100%;
+        background-color: #6495ed45;
+    }
 
 a {
   color: var(--accent-color);
@@ -277,8 +289,9 @@ h6 {
 }
 
 .header .branding {
-  min-height: 60px;
-  padding: 10px 0;
+ box-shadow: 0px -9px 20px 0px;
+    min-height: 60px;
+    padding: 10px 0;
 }
 
 .header .logo {
@@ -847,11 +860,11 @@ h6 {
 --------------------------------------------------------------*/
 section,
 .section {
-  color: var(--default-color);
-  background-color: var(--background-color);
-  padding: 60px 0;
-  scroll-margin-top: 72px;
-  overflow: clip;
+    color: var(--default-color);
+    background-color: var(--background-color);
+    padding: 0 0 60px 0;
+    scroll-margin-top: 72px;
+    overflow: clip;
 }
 
 @media (max-width: 1199px) {
@@ -872,9 +885,10 @@ section,
 }
 
 .section-title h2 {
-  font-size: 32px;
+  font-size: 40px;
   font-weight: 500;
   margin-bottom: 20px;
+  margin-top:40px;
   padding-bottom: 20px;
   position: relative;
 }

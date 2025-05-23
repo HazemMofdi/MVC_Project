@@ -12,24 +12,13 @@ namespace MVC_Project.ViewModels
         [EmailAddress(ErrorMessage = "Invalid email address")]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Please Enter Your Password")]
+        [StringLength(40, MinimumLength = 8, ErrorMessage = "The {0} must be at least {2} characters long.")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
         [Phone(ErrorMessage = "Invalid phone number")]
         public string PhoneNumber { get; set; }
-        public string Preferences { get; set; }
-
-
-        [DataType(DataType.Date)]
-        public DateTime? DateOfBirth { get; set; }
-
-        [Required(ErrorMessage = "Please select a gender")]
-        public string Gender { get; set; }
-
-
-        [Required(ErrorMessage = "Please Choose your complaint")]
-        public string HealthAssessmentResults { get; set; }
 
         [Required]
         public bool AcceptTerms { get; set; }

@@ -206,7 +206,6 @@ namespace MVC_Project.Data
                         UserID = 1, // (Sarah)
                         TherapistID = 1, // (Hazem)
                         SessionDate = new DateTime(2025, 4, 4),
-                        SessionTime = new TimeSpan(10, 0, 0), // 10:00 AM
                         SessionType = SessionTypeEnum.VideoCall.ToString(),
                         SessionStatus = SessionStatusEnum.Booked.ToString(),
                         SessionNotes = "Initial consultation for anxiety management."
@@ -218,7 +217,6 @@ namespace MVC_Project.Data
                         UserID = 2, // (Mohamed)
                         TherapistID = 2, //(Hassan)
                         SessionDate = new DateTime(2025, 3, 3),
-                        SessionTime = new TimeSpan(14, 0, 0), // 2:00 PM
                         SessionType = SessionTypeEnum.Chat.ToString(),
                         SessionStatus = SessionStatusEnum.Completed.ToString(),//COMPLETED
                         SessionNotes = "Follow-up session for stress management."
@@ -230,7 +228,6 @@ namespace MVC_Project.Data
                         UserID = 3, // (Ahmed)
                         TherapistID = 3, // (Rahma)
                         SessionDate = new DateTime(2025, 6, 6),
-                        SessionTime = new TimeSpan(16, 0, 0), // 4:00 PM
                         SessionType = SessionTypeEnum.Chat.ToString(),
                         SessionStatus = SessionStatusEnum.Booked.ToString(),
                         SessionNotes = "Discussion on trauma recovery."
@@ -242,7 +239,6 @@ namespace MVC_Project.Data
                         UserID = 1, // (Sarah)
                         TherapistID = 4, // (Nancy)
                         SessionDate = new DateTime(2025, 5, 5),
-                        SessionTime = new TimeSpan(11, 0, 0), // 11:00 AM
                         SessionType = SessionTypeEnum.VideoCall.ToString(),
                         SessionStatus = SessionStatusEnum.Booked.ToString(),
                         SessionNotes = "Session on workplace stress and burnout."
@@ -254,7 +250,6 @@ namespace MVC_Project.Data
                         UserID = 2, // (Mohamed)
                         TherapistID = 5, //(Hamss)
                         SessionDate = new DateTime(2025, 4, 30),
-                        SessionTime = new TimeSpan(13, 0, 0), // 1:00 PM
                         SessionType = SessionTypeEnum.Chat.ToString(),
                         SessionStatus = SessionStatusEnum.Booked.ToString(),
                         SessionNotes = "Session on OCD management."
@@ -265,7 +260,6 @@ namespace MVC_Project.Data
                         UserID = 4, // Yara
                         TherapistID = 1, // Hazem
                         SessionDate = new DateTime(2025, 4, 28),
-                        SessionTime = new TimeSpan(9, 0, 0), // 9:00 AM
                         SessionType = SessionTypeEnum.VideoCall.ToString(),
                         SessionStatus = SessionStatusEnum.Booked.ToString(),
                         SessionNotes = "Initial consultation for anxiety."
@@ -276,7 +270,6 @@ namespace MVC_Project.Data
                         UserID = 5, // Omar
                         TherapistID = 1, // Hazem
                         SessionDate = new DateTime(2025, 7, 4),
-                        SessionTime = new TimeSpan(11, 0, 0), // 11:00 AM
                         SessionType = SessionTypeEnum.Chat.ToString(),
                         SessionStatus = SessionStatusEnum.Booked.ToString(),
                         SessionNotes = "Session for panic disorder support."
@@ -287,7 +280,6 @@ namespace MVC_Project.Data
                         UserID = 6, // Lina
                         TherapistID = 2, // Hassan
                         SessionDate = new DateTime(2025, 5, 2),
-                        SessionTime = new TimeSpan(12, 0, 0), // 12:00 PM
                         SessionType = SessionTypeEnum.VideoCall.ToString(),
                         SessionStatus = SessionStatusEnum.Booked.ToString(),
                         SessionNotes = "Evening-preference client, PTSD therapy."
@@ -298,7 +290,6 @@ namespace MVC_Project.Data
                         UserID = 7, // Karim
                         TherapistID = 4, // Nancy
                         SessionDate = new DateTime(2025, 5, 4),
-                        SessionTime = new TimeSpan(14, 0, 0), // 2:00 PM
                         SessionType = SessionTypeEnum.VideoCall.ToString(),
                         SessionStatus = SessionStatusEnum.Booked.ToString(),
                         SessionNotes = "OCD-focused discussion and planning."
@@ -309,7 +300,6 @@ namespace MVC_Project.Data
                         UserID = 8, // Nour
                         TherapistID = 5, // Hamss
                         SessionDate = new DateTime(2025, 5, 3),
-                        SessionTime = new TimeSpan(15, 0, 0), // 3:00 PM
                         SessionType = SessionTypeEnum.VideoCall.ToString(),
                         SessionStatus = SessionStatusEnum.Booked.ToString(),
                         SessionNotes = "Session for mild depression, female therapist requested."

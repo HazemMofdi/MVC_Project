@@ -5,6 +5,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using MVC_Project.Data;
 using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 
 namespace MVC_Project.Controllers
@@ -25,22 +26,28 @@ namespace MVC_Project.Controllers
             return View();
         }
 
+        // Check if the authentication cookie is present and the user is logged in
+        //var isAuthenticated = HttpContext.User?.Identity?.IsAuthenticated ?? false;
+
+        //if (!isAuthenticated)
+        //{
+        //    return RedirectToAction("Login", "SignUp_Login"); // Manually redirect if not authenticated
+        //}
+
+        //if (string.IsNullOrEmpty(HttpContext.Session.GetString("UserName")))
+        //{
+        //    return RedirectToAction("Login", "SignUp_Login");
+        //}
         [Authorize]
-        public IActionResult User()
+        public IActionResult UserList()
         {
-            // Check if the authentication cookie is present and the user is logged in
-            //var isAuthenticated = HttpContext.User?.Identity?.IsAuthenticated ?? false;
-
-            //if (!isAuthenticated)
-            //{
-            //    return RedirectToAction("Login", "SignUp_Login"); // Manually redirect if not authenticated
-            //}
-
-            //if (string.IsNullOrEmpty(HttpContext.Session.GetString("UserName")))
-            //{
-            //    return RedirectToAction("Login", "SignUp_Login");
-            //}
-
+            var role = HttpContext.User?.FindFirst(ClaimTypes.Role)?.Value;
+            ViewBag.Role = role;
+            if (!User.IsInRole("Doctor"))
+            {
+                ViewBag.AccessDenied = true;
+                return View();
+            }
 
             var usersList = _db.Users.ToList();
             return View(usersList);

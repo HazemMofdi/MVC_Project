@@ -18,13 +18,7 @@ namespace MVC_Project.ViewModels
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
-        [Required(ErrorMessage = "Bio is required")]
-        public string Bio { get; set; }
-
-        [Required(ErrorMessage = "Availability is required")]
-        public string Availability { get; set; }
-
-        [Required(ErrorMessage = "Profile image is required")]
+        public int Rating { get; set; }
         public IFormFile? ImageFile { get; set; }  // Optional image upload
 
 

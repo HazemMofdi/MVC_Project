@@ -542,6 +542,9 @@ namespace MVC_Project.Migrations
                     b.Property<string>("HealthAssessmentResults")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ImagePath")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");

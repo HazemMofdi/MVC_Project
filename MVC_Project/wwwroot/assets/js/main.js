@@ -1,11 +1,20 @@
-/**
+﻿/**
 * Template Name: Medilab
 * Template URL: https://bootstrapmade.com/medilab-free-medical-bootstrap-theme/
 * Updated: Aug 07 2024 with Bootstrap v5.3.3
 * Author: BootstrapMade.com
 * License: https://bootstrapmade.com/license/
 */
+document.querySelectorAll(".navmenu ul li").forEach(function (li) {
+    li.onclick = function () {
 
+        document.querySelectorAll(".navmenu ul li").forEach(function (item) {
+            item.classList.remove("active");
+        });
+
+        li.classList.add("active");
+    };
+});
 (function() {
   "use strict";
 

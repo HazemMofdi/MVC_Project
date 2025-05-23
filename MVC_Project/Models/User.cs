@@ -37,6 +37,8 @@ namespace MVC_Project.Models
         public string? Gender { get; set; }
         public string? HealthAssessmentResults { get; set; }
         public string? Preferences { get; set; }
+        public string? ImagePath { get; set; }
+
 
 
         // Relations

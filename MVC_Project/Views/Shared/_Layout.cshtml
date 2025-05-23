@@ -1,46 +1,8 @@
-﻿<style>
-    .login-li{
-        margin-left: 30px;
-        background-color: #1977cc;
-        color: white;
-        width: 75px;
-        height: 35px;
-        display: flex;
-        border-radius: 22px;
-    }
+﻿@using System.Security.Claims
+@{
+    var role = User.FindFirst(ClaimTypes.Role)?.Value;
+}
 
-    .login-li:hover {
-            background-color: #1977ccd4;
-        }
-
-    .login-li:hover > a:before {
-                width:0 !important ;
-            }
-            .login-li a{
-        color:white !important;
-    }
-
-    .SignUp-li {
-        background-color: #1977cc;
-        color: white;
-        width: 90px;
-        height: 35px;
-        display: flex;
-        border-radius: 22px;
-    }
-
-        .SignUp-li:hover {
-            background-color: #1977ccd4;
-        }
-
-            .SignUp-li:hover > a:before {
-                width: 0 !important;
-            }
-
-        .SignUp-li a {
-            color: white !important;
-        }
-</style>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -58,7 +20,7 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com" rel="preconnect">
     <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
     <!-- Vendor CSS Files -->
     <link href="~/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -70,124 +32,105 @@
 
     <!-- Main CSS File -->
     <link href="~/assets/css/main.css" rel="stylesheet">
+
+    <style>
+        .login-li {
+            background-color: #1977cc;
+            color: white;
+            width: 75px;
+            height: 35px;
+            display: flex;
+            border-radius: 22px;
+        }
+
+            .login-li:hover {
+                background-color: #1977ccd4;
+            }
+
+                .login-li:hover > a:before {
+                    width: 0 !important;
+                }
+
+            .login-li a {
+                color: white !important;
+            }
+    </style>
 </head>
 
 <body class="index-page">
 
     <header id="header" class="header sticky-top">
-
-        <div class="topbar d-flex align-items-center">
-            <div class="container d-flex justify-content-center justify-content-md-between">
-                <div class="contact-info d-flex align-items-center">
-                    <i class="bi bi-envelope d-flex align-items-center"><a href="mailto:contact@example.com">viorasupport@gmail.com</a></i>
-                    <i class="bi bi-phone d-flex align-items-center ms-4"><span>160188</span></i>
-                </div>
-                <div class="social-links d-none d-md-flex align-items-center">
-                    <a href="#" class="twitter"><i class="bi bi-twitter-x"></i></a>
-                    <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-                    <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-                    <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
-                </div>
-            </div>
-        </div><!-- End Top Bar -->
-
         <div class="branding d-flex align-items-center">
-
             <div class="container position-relative d-flex align-items-center justify-content-between">
-                <a href="index.html" class="logo d-flex align-items-center me-auto">
-                    <!-- Uncomment the line below if you also wish to use an image logo -->
-                    <!-- <img src="~/assets/img/logo.png" alt=""> -->
+                <a href="/home/index" class="logo d-flex align-items-center me-auto">
                     <h1 class="sitename">Viora</h1>
                 </a>
 
                 <nav id="navmenu" class="navmenu">
                     <ul>
-                        <li><a href="#hero" class="active">Home<br></a></li>
-                        <li><a href="/home/index">About</a></li>
+                        <li><a href="/home/index" class="active">Home</a></li>
+                        <li><a href="/home/About">About</a></li>
                         <li><a href="/therapist/doc">Therapists</a></li>
-                        <li class="SignUp-li"><a href="/SignUp_Login/SignUp">Sign Up</a></li>
+
                         @if (User.Identity.IsAuthenticated)
                         {
+                            <li class="dropdown">
+                                <a href="#"><span>Features</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                                <ul>
+                                    <li><a href="/session/ViewSession">View Sessions</a></li>
+                                    <li><a href="/user/UserList">View Users</a></li>
+                                    <li><a href="/progresstracking/track">View Progress</a></li>
+                                    <li><a href="/review/review">View Reviews</a></li>
+                                    <li><a href="/SignUp_Login/UserProfile">Manage Profile</a></li>
+                                </ul>
+                            </li>
+
+                            <!-- Logout Button -->
                             <li>
-                                <form asp-action="Logout" asp-controller="SignUp_Login" method="post" style="margin-left:15px; margin-top:15px;">
+                                <form asp-action="Logout" asp-controller="SignUp_Login" method="post" style="margin-left:15px;">
                                     @Html.AntiForgeryToken()
-                                    <button type="submit" style="background-color: #1977cc; color: white; width: 75px; height: 35px; border-radius: 22px; border:none; cursor:pointer;">
+                                    <button type="submit" style="background-color: #1977cc; color: white; width: 75px; height: 35px; border-radius: 22px; border:none; cursor:pointer; margin-left:-10px;">
                                         Logout
                                     </button>
                                 </form>
                             </li>
+
+                            @* User-specific actions *@
+                            @if (role == "User")
+                            {
+                                <a class="cta-btn d-none d-sm-block" href="/home/MakeAppointment" style="margin-left:0px;">Make an Appointment</a>
+                                <a class="cta-btn d-none d-sm-block" href="/Review/MakeReview" style="margin-left:10px;">Make a Review</a>
+                            }
+
+                            @* Doctor-specific actions *@
+                            @if (role == "Doctor")
+                            {
+                                <a class="cta-btn d-none d-sm-block" href="/ProgressTracking/DocFeedback" style="margin-left:0px;">Make a Feedback</a>
+                            }
                         }
                         else
                         {
-                            <li class="login-li"><a href="/SignUp_Login/Login">Login</a></li>
+                            <li class="login-li"><a href="/SignUp_Login/Signup">SignUp</a></li>
+                            <li class="login-li" style="margin-left: 15px; min-width: 120px; width: auto;"><a href="/SignUp_Login/Doc_Signup">Doc_SignUp</a></li>
                         }
                     </ul>
                     <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
                 </nav>
-
-                <a class="cta-btn d-none d-sm-block" href="/home/MakeAppointment" style="margin-right: 15px">Make an Appointment</a>
-
             </div>
-
         </div>
-
     </header>
 
     <main class="main">
-
-        <!-- Hero Section -->
         @RenderBody()
-
-
     </main>
 
     <footer id="footer" class="footer light-background">
-
-        <div class="container footer-top">
-            <div class="row gy-4">
-                <div class="col-lg-4 col-md-6 footer-about">
-                    <a href="index.html" class="logo d-flex align-items-center">
-                        <span class="sitename">viora</span>
-                    </a>
-                    <div class="footer-contact pt-3">
-                        <p>A108 Adam Street</p>
-                        <p>New York, NY 535022</p>
-                        <p class="mt-3"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
-                        <p><strong>Email:</strong> <span>info@example.com</span></p>
-                    </div>
-                    <div class="social-links d-flex mt-4">
-                        <a href=""><i class="bi bi-twitter-x"></i></a>
-                        <a href=""><i class="bi bi-facebook"></i></a>
-                        <a href=""><i class="bi bi-instagram"></i></a>
-                        <a href=""><i class="bi bi-linkedin"></i></a>
-                    </div>
-                </div>
-
-                <div class="col-lg-2 col-md-3 footer-links">
-                    <h4>Useful Links</h4>
-                    <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">About us</a></li>
-                        <li><a href="#">Services</a></li>
-                        <li><a href="#">Terms of service</a></li>
-                        <li><a href="#">Privacy policy</a></li>
-                    </ul>
-                </div>
-
-            </div>
-        </div>
-
         <div class="container copyright text-center mt-4">
-            <p>© <span>Copyright</span> <strong class="px-1 sitename">viora</strong> <span>All Rights Reserved</span></p>
+            <p>© <span>Copyright</span> <strong class="px-1 sitename">Viora</strong> <span>All Rights Reserved</span></p>
             <div class="credits">
-                <!-- All the links in the footer should remain intact. -->
-                <!-- You can delete the links only if you've purchased the pro version. -->
-                <!-- Licensing information: https://bootstrapmade.com/license/ -->
-                <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-                Designed by <a href="https://github.com/HazemMofdi/MVC_Project" target="_blank">VIORA DEVELOMPENT TEAM</a>
+                Designed by <a href="https://github.com/HazemMofdi/MVC_Project" target="_blank">VIORA DEVELOPMENT TEAM</a>
             </div>
         </div>
-
     </footer>
 
     <!-- Scroll Top -->
@@ -203,12 +146,12 @@
     <script src="~/assets/vendor/glightbox/js/glightbox.min.js"></script>
     <script src="~/assets/vendor/purecounter/purecounter_vanilla.js"></script>
     <script src="~/assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="~/assets/js/docCardHandler.js"></script>
 
     <!-- Main JS File -->
     <script src="~/assets/js/main.js"></script>
 
+    @await RenderSectionAsync("Scripts", required: false)
+
 </body>
-
 </html>
-
-@await RenderSectionAsync("Scripts", required: false)

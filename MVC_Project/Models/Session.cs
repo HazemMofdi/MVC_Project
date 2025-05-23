@@ -25,8 +25,6 @@ namespace MVC_Project.Models
         [Required]
         public DateTime SessionDate { get; set; }
         [Required]
-        public TimeSpan SessionTime { get; set; }
-        [Required]
         public string SessionType { get; set; }
         [Required]
         public string SessionStatus { get; set; }

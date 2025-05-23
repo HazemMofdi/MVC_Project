@@ -3,6 +3,9 @@ using MVC_Project.Data;
 using Microsoft.AspNetCore.Authorization;
 using MVC_Project.Models;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using MVC_Project.ViewModels;
 
 
 namespace MVC_Project.Controllers
@@ -78,6 +81,82 @@ namespace MVC_Project.Controllers
 
             return View(reviewList);
         }
+
+
+
+
+
+
+        [HttpGet]
+        public IActionResult MakeReview()
+        {
+            var therapist = _db.Therapists
+                .Select(t => new SelectListItem
+                {
+                    Value = t.Id.ToString(),   // therapist id
+                    Text = t.FullName             // therapist name
+                })
+                .ToList();
+
+            ViewBag.Therapists = therapist;
+
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> MakeReview(ReviewViewModel model)
+        {
+            var email = User.FindFirstValue(ClaimTypes.Email);
+            var user = await _db.Users.FirstOrDefaultAsync(u => u.Email == email);
+            if (user == null) return RedirectToAction("Login", "SignUp_Login");
+
+
+
+
+
+            // 🌟 Find the therapist by name
+            var therapist = await _db.Therapists.FirstOrDefaultAsync(t => t.Id == model.TherapistID);
+            if (therapist == null)
+            {
+                ModelState.AddModelError("", "Selected therapist does not exist.");
+                return RedirectToAction("Review", "Review");
+            }
+
+            if (model.Date.Date < DateTime.Now.Date)
+            {
+                ModelState.AddModelError("", "You cannot make a review in the past.");
+                return RedirectToAction("Review", "Review");
+            }
+
+            var review = new Review
+            {
+                ReviewDate = model.Date.Date,
+                Rating = model.Rating,
+                ReviewText = model.ReviewText,
+                UserID = user.Id,
+                TherapistID = therapist.Id
+            };
+
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction("Review", "Review");
+            }
+
+            _db.Reviews.Add(review);
+            _db.SaveChanges();
+
+            TempData["Success"] = "Review made successfully!";
+            return RedirectToAction("ReviewSuccess");
+        }
+
+
+
+        public IActionResult ReviewSuccess()
+        {
+            return View();
+        }
+
+
 
     }
 }

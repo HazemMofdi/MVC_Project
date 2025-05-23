@@ -25,7 +25,7 @@ namespace MVC_Project.Controllers
 
         public IActionResult doc()
         {
-            var therapistList = _db.Therapists.ToList();
+            var therapistList = _db.Therapists.ToList();//
             return View(therapistList);
         }
     }
