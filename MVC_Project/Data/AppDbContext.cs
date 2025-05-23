@@ -3,26 +3,22 @@ using MVC_Project.Models;
 
 namespace MVC_Project.Data
 {
+
     public class AppDbContext : DbContext
     {
+       
+
+        public AppDbContext(DbContextOptions options) : base(options)
+        {
+        }
+
         public DbSet<User> Users { get; set; }
         public DbSet<Therapist> Therapists { get; set; }
         public DbSet<Session> Sessions { get; set; }
         public DbSet<ProgressTracking> ProgressTrackings { get; set; }
         public DbSet<Review> Reviews { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            base.OnConfiguring(optionsBuilder);
-
-            var config = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json")
-                .Build();
-
-            var connectionString = config.GetSection("constr").Value;
-
-            optionsBuilder.UseSqlServer(connectionString);
-        }
+        
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -35,7 +31,8 @@ namespace MVC_Project.Data
                     {
                         Id = 1,
                         FullName = "Hazem Mofdi",
-                        Img = "doctors-1.jpg",
+                        Password = "12345678",
+                        ImagePath = "doctors-1.jpg",
                         Email = "HazemMofdi11@gmail.com",
                         Bio = "Experienced therapist with 10+ years of practice. Specializes in anxiety and depression.",
                         Rating = 5,
@@ -46,7 +43,8 @@ namespace MVC_Project.Data
                     {
                         Id = 2,
                         FullName = "Hassan Atef",
-                        Img = "doctors-1.jpg",
+                        Password = "12345678",
+                        ImagePath = "doctors-1.jpg",
                         Email = "HassanAtef10@gmail.com",
                         Bio = "Specializes in stress management and burnout. Helps clients develop coping strategies.",
                         Rating = 5,
@@ -58,7 +56,8 @@ namespace MVC_Project.Data
 
                         Id = 3,
                         FullName = "Rahma Tarek",
-                        Img = "doctors-2.jpg",
+                        Password = "12345678",
+                        ImagePath = "doctors-2.jpg",
                         Email = "RahmaTarek111@gmail.com",
                         Bio = "Specializes in trauma-informed therapist who specializes in helping clients heal from PTSD and complex trauma",
                         Rating = 5,
@@ -69,7 +68,8 @@ namespace MVC_Project.Data
                     {
                         Id = 4,
                         FullName = "Nancy Saad",
-                        Img = "doctors-2.jpg",
+                        Password = "12345678",
+                        ImagePath = "doctors-2.jpg",
                         Email = "NancySaad111@gmail.com",
                         Bio = "Specializes in workplace stress and burnout. She helps clients manage stress, improve work-life balance, and develop resilience through mindfulness and stress-reduction techniques.",
                         Rating = 5,
@@ -80,7 +80,8 @@ namespace MVC_Project.Data
                     {
                         Id = 5,
                         FullName = "Hamss Mohammed",
-                        Img = "doctors-2.jpg",
+                        Password = "12345678",
+                        ImagePath = "doctors-2.jpg",
                         Email = "HamssMohamed111@gmail.com",
                         Bio = "licensed psychologist specializing in the treatment of Obsessive-Compulsive Disorder (OCD), She helps clients reduce compulsions and manage intrusive thoughts. With over 10 years of experience",
                         Rating = 5,
@@ -96,8 +97,7 @@ namespace MVC_Project.Data
                     new User
                     {
                         Id = 1,
-                        FName = "Sarah",
-                        LName = "Ahmed",
+                        FullName = "Sarah Ahmed",
                         Email = "SarahAhmed12@gmail.com",
                         Password = "123456",
                         PhoneNumber = "01012345678",
@@ -110,8 +110,7 @@ namespace MVC_Project.Data
                     new User
                     {
                         Id = 2,
-                        FName = "Mohammed",
-                        LName = "Mahmoud",
+                        FullName = "Mohammed Mahmoud",
                         Email = "MohammedMahmoud33@gmail.com",
                         Password = "1234567",
                         PhoneNumber = "01033345678",
@@ -123,8 +122,7 @@ namespace MVC_Project.Data
                     new User
                     {
                         Id = 3,
-                        FName = "Toqa",
-                        LName = "Ali",
+                        FullName = "Toqa Ali",
                         Email = "ToqaAli25@gmail.com",
                         Password = "12345678",
                         PhoneNumber = "01044445678",
@@ -136,8 +134,7 @@ namespace MVC_Project.Data
                     new User
                     {
                         Id = 4,
-                        FName = "Yara",
-                        LName = "Hassan",
+                        FullName = "Yara Hassan",
                         Email = "Yara.Hassan@example.com",
                         Password = "SecurePass123",
                         PhoneNumber = "01055556789",
@@ -149,8 +146,7 @@ namespace MVC_Project.Data
                     new User
                     {
                         Id = 5,
-                        FName = "Omar",
-                        LName = "Ibrahim",
+                        FullName = "Omar Ibrahim",
                         Email = "Omar.Ibrahim@example.com",
                         Password = "OmarPass2023",
                         PhoneNumber = "01066667890",
@@ -162,8 +158,7 @@ namespace MVC_Project.Data
                     new User
                     {
                         Id = 6,
-                        FName = "Lina",
-                        LName = "Mahmoud",
+                        FullName = "Lina Mahmoud",
                         Email = "Lina.Mahmoud@example.com",
                         Password = "Lina123!",
                         PhoneNumber = "01077778901",
@@ -175,8 +170,7 @@ namespace MVC_Project.Data
                     new User
                     {
                         Id = 7,
-                        FName = "Karim",
-                        LName = "Adel",
+                        FullName = "Karim Adel",
                         Email = "Karim.Adel@example.com",
                         Password = "Karim@789",
                         PhoneNumber = "01088889012",
@@ -188,8 +182,7 @@ namespace MVC_Project.Data
                     new User
                     {
                         Id = 8,
-                        FName = "Nour",
-                        LName = "Samir",
+                        FullName = "Nour Samir",
                         Email = "Nour.Samir@example.com",
                         Password = "NourPass!",
                         PhoneNumber = "01099990123",

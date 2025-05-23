@@ -1,4 +1,47 @@
-﻿<!DOCTYPE html>
+﻿<style>
+    .login-li{
+        margin-left: 30px;
+        background-color: #1977cc;
+        color: white;
+        width: 75px;
+        height: 35px;
+        display: flex;
+        border-radius: 22px;
+    }
+
+    .login-li:hover {
+            background-color: #1977ccd4;
+        }
+
+    .login-li:hover > a:before {
+                width:0 !important ;
+            }
+            .login-li a{
+        color:white !important;
+    }
+
+    .SignUp-li {
+        background-color: #1977cc;
+        color: white;
+        width: 90px;
+        height: 35px;
+        display: flex;
+        border-radius: 22px;
+    }
+
+        .SignUp-li:hover {
+            background-color: #1977ccd4;
+        }
+
+            .SignUp-li:hover > a:before {
+                width: 0 !important;
+            }
+
+        .SignUp-li a {
+            color: white !important;
+        }
+</style>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -9,7 +52,7 @@
     <meta name="keywords" content="">
 
     <!-- Favicons -->
-    <link href="~/assets/img/favicon.png" rel="icon">
+    <link href="~/assets/img/favicon.jpeg" rel="icon">
     <link href="~/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
     <!-- Fonts -->
@@ -27,14 +70,6 @@
 
     <!-- Main CSS File -->
     <link href="~/assets/css/main.css" rel="stylesheet">
-
-    <!-- =======================================================
-    * Template Name: viora
-    * Template URL: https://bootstrapmade.com/viora-free-medical-bootstrap-theme/
-    * Updated: Aug 07 2024 with Bootstrap v5.3.3
-    * Author: BootstrapMade.com
-    * License: https://bootstrapmade.com/license/
-    ======================================================== -->
 </head>
 
 <body class="index-page">
@@ -44,8 +79,8 @@
         <div class="topbar d-flex align-items-center">
             <div class="container d-flex justify-content-center justify-content-md-between">
                 <div class="contact-info d-flex align-items-center">
-                    <i class="bi bi-envelope d-flex align-items-center"><a href="mailto:contact@example.com">h1k2r3n4h5@gmail.com</a></i>
-                    <i class="bi bi-phone d-flex align-items-center ms-4"><span>01050607080-01150607080</span></i>
+                    <i class="bi bi-envelope d-flex align-items-center"><a href="mailto:contact@example.com">viorasupport@gmail.com</a></i>
+                    <i class="bi bi-phone d-flex align-items-center ms-4"><span>160188</span></i>
                 </div>
                 <div class="social-links d-none d-md-flex align-items-center">
                     <a href="#" class="twitter"><i class="bi bi-twitter-x"></i></a>
@@ -70,12 +105,27 @@
                         <li><a href="#hero" class="active">Home<br></a></li>
                         <li><a href="/home/index">About</a></li>
                         <li><a href="/therapist/doc">Therapists</a></li>
-                        <li><a href="#contact">Contact</a></li>
+                        <li class="SignUp-li"><a href="/SignUp_Login/SignUp">Sign Up</a></li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li>
+                                <form asp-action="Logout" asp-controller="SignUp_Login" method="post" style="margin-left:15px; margin-top:15px;">
+                                    @Html.AntiForgeryToken()
+                                    <button type="submit" style="background-color: #1977cc; color: white; width: 75px; height: 35px; border-radius: 22px; border:none; cursor:pointer;">
+                                        Logout
+                                    </button>
+                                </form>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="login-li"><a href="/SignUp_Login/Login">Login</a></li>
+                        }
                     </ul>
                     <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
                 </nav>
 
-                <a class="cta-btn d-none d-sm-block" href="#appointment">Make an Appointment</a>
+                <a class="cta-btn d-none d-sm-block" href="/home/MakeAppointment" style="margin-right: 15px">Make an Appointment</a>
 
             </div>
 
@@ -84,29 +134,10 @@
     </header>
 
     <main class="main">
-       
+
         <!-- Hero Section -->
-        <section id="hero" class="hero section light-background">
-
-            <img src="~/assets/img/hero-bg.jpg" alt="" data-aos="fade-in">
-
-            <div class="container position-relative">
-
-                <div class="welcome position-relative" data-aos="fade-down" data-aos-delay="100">
-                    <h2>WELCOME TO VIORA</h2>
-                    <p>We Are Team of Talented Team of Doctors</p>
-                </div><!-- End Welcome -->
-
-      
-
-                </div><!-- End  Content-->
-
-            </div>
-
-        </section><!-- /Hero Section -->
-      
         @RenderBody()
-        
+
 
     </main>
 
@@ -143,39 +174,6 @@
                     </ul>
                 </div>
 
-                <div class="col-lg-2 col-md-3 footer-links">
-                    <h4>Our Services</h4>
-                    <ul>
-                        <li><a href="#">Web Design</a></li>
-                        <li><a href="#">Web Development</a></li>
-                        <li><a href="#">Product Management</a></li>
-                        <li><a href="#">Marketing</a></li>
-                        <li><a href="#">Graphic Design</a></li>
-                    </ul>
-                </div>
-
-                <div class="col-lg-2 col-md-3 footer-links">
-                    <h4>Hic solutasetp</h4>
-                    <ul>
-                        <li><a href="#">Molestiae accusamus iure</a></li>
-                        <li><a href="#">Excepturi dignissimos</a></li>
-                        <li><a href="#">Suscipit distinctio</a></li>
-                        <li><a href="#">Dilecta</a></li>
-                        <li><a href="#">Sit quas consectetur</a></li>
-                    </ul>
-                </div>
-
-                <div class="col-lg-2 col-md-3 footer-links">
-                    <h4>Nobis illum</h4>
-                    <ul>
-                        <li><a href="#">Ipsam</a></li>
-                        <li><a href="#">Laudantium dolorum</a></li>
-                        <li><a href="#">Dinera</a></li>
-                        <li><a href="#">Trodelas</a></li>
-                        <li><a href="#">Flexo</a></li>
-                    </ul>
-                </div>
-
             </div>
         </div>
 
@@ -186,7 +184,7 @@
                 <!-- You can delete the links only if you've purchased the pro version. -->
                 <!-- Licensing information: https://bootstrapmade.com/license/ -->
                 <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+                Designed by <a href="https://github.com/HazemMofdi/MVC_Project" target="_blank">VIORA DEVELOMPENT TEAM</a>
             </div>
         </div>
 
@@ -212,4 +210,5 @@
 </body>
 
 </html>
-        
+
+@await RenderSectionAsync("Scripts", required: false)

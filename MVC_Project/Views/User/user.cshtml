@@ -8,8 +8,7 @@
 <table border="1">
     <thead>
         <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
+            <th>Full Name</th>
             <th>PhoneNumber</th>
             <th>HealthAssessment</th>
         </tr>
@@ -18,8 +17,7 @@
         @foreach (var user in Model)
         {
             <tr>
-                <td>@user.FName</td>
-                <td>@user.LName</td>
+                <td>@user.FullName</td>
                 <td>@user.PhoneNumber</td>
                 <td>@user.HealthAssessmentResults</td>
 

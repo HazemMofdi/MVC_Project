@@ -3,18 +3,21 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MVC_Project.Data;
 using MVC_Project.Models;
+using MVC_Project.ViewModels;
 
 namespace MVC_Project.Controllers
 {
     public class HomeController : Controller
     {
-        AppDbContext db = new AppDbContext();
-        private readonly ILogger<HomeController> _logger;
+        private readonly AppDbContext _db;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(AppDbContext db)
         {
-            _logger = logger;
+            _db = db;
         }
+
+
+       
 
         public IActionResult index()
         {
@@ -25,6 +28,15 @@ namespace MVC_Project.Controllers
         {
             return View();
         }
+
+
+        public IActionResult MakeAppointment()
+        {
+            return View();
+        }
+
+
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

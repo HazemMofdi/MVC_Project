@@ -1,0 +1,137 @@
+﻿@using MVC_Project.ViewModels
+@model LoginViewModel
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+    }
+
+    body {
+        min-height: 100vh;
+        background: #f0faff;
+    }
+
+    .form.login {
+        margin: 60px;
+    }
+
+    .login form {
+        width: 450px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background-color: #1977ccb3;
+        border-radius: 10px;
+        gap: 20px;
+        padding: 20px;
+        margin: 0 auto;
+    }
+
+    .form header {
+        padding: 20px;
+        font-size: 30px;
+        text-align: center;
+        color: #1977cc;
+        font-weight: 600;
+    }
+
+    form input {
+        height: 60px;
+        width: 300px;
+        outline: none;
+        border: none;
+        padding: 0 15px;
+        font-size: 16px;
+        font-weight: 400;
+        color: black;
+        border-radius: 8px;
+        background: #fff;
+    }
+
+
+    .form.login input {
+        border: 1px solid #aaa;
+    }
+
+        .form.login input:first-child {
+            margin-top: 45px;
+        }
+
+        .form.login input:focus {
+            box-shadow: 0 1px 0 #ddd;
+        }
+
+    form .checkbox {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .checkbox input[type="checkbox"] {
+        height: 16px;
+        width: 16px;
+        accent-color: #fff;
+        cursor: pointer;
+    }
+
+    form .checkbox label {
+        cursor: pointer;
+        color: #fff;
+    }
+
+    form a {
+        color: white;
+        text-decoration: none;
+    }
+
+    form p {
+        color: white;
+    }
+
+    form a:hover {
+        text-decoration: underline;
+        color: #2c4964;
+    }
+
+    form input[type="submit"] {
+        background-color: #1977cc;
+        color: white;
+        margin-top: 15px;
+        font-size: 18px;
+        font-weight: 500;
+        border: none !important;
+        transition: all 0.3s ease;
+    }
+
+        form input[type="submit"]:hover {
+            width: 150px;
+            background-color: #2c4964c9;
+        }
+</style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" href="~/assets/css/form.css" />
+</head>
+    <body>
+        <div class="form login">
+            <header>Login</header>
+            <form asp-action="Login" asp-controller="SignUp_Login"  method="post">
+                <input asp-for="Email" placeholder="Email address" required />
+                <input asp-for="Password" placeholder="Password" required />
+                <a href="#">Forgot password?</a>
+                <input type="submit" value="Login" />
+                <p>
+                    Don't have an account? <a href="SignUp_Login/SignUp" style="color: #4070f4; text-decoration: underline;">Signup</a>
+                </p>
+
+            </form>
+        </div>
+    </body>
+</html>

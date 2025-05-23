@@ -9,7 +9,14 @@ namespace MVC_Project.Controllers
 {
     public class TherapistController : Controller
     {
-        AppDbContext db = new AppDbContext();
+        //AppDbContext db = new AppDbContext();
+
+        private readonly AppDbContext _db;
+
+        public TherapistController(AppDbContext db)
+        {
+            _db = db;
+        }
 
         public IActionResult Index()
         {
@@ -18,7 +25,7 @@ namespace MVC_Project.Controllers
 
         public IActionResult doc()
         {
-            var therapistList = db.Therapists.ToList();
+            var therapistList = _db.Therapists.ToList();
             return View(therapistList);
         }
     }
